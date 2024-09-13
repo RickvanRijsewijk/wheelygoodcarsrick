@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CarController;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +19,17 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Route::get('/aanbodplaatsenstap2', [CarController::class, 'processStep1'])->name('cars.offer.step1');
+
+
 Route::middleware('auth')->group(function () {
-    //
+    Route::get('/aanbodplaatsen', function () {
+        return view('aanbodplaatsen');
+    })->name('aanbodplaatsen');
+
+    Route::get('/aanbodplaatsenstap2', function () {
+        return view('aanbodplaatsenstap2');
+    })->name('aanbodplaatsenstap2');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
