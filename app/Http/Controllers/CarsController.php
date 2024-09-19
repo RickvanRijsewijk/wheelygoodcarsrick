@@ -10,7 +10,7 @@ class CarsController extends Controller
     public function offerStep1()
     {
         // Laat het formulier zien met de input voor het kenteken
-        return view('/aanbieden');
+        return view('aanbieden');
     }
 
     public function processStep1(Request $request)
@@ -40,7 +40,7 @@ class CarsController extends Controller
     public function offerStep2()
     {
         // Laat het formulier zien met de input voor de overige gegevens
-        return view('cars.offer.step2');
+        return view('aanbiedenstap2');
     }
 
     public function processStep2(Request $request)
