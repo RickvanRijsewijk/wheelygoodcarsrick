@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\CarsController;
 use Illuminate\Http\Request;
 
 /*
@@ -19,17 +20,12 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/aanbodplaatsenstap2', [CarController::class, 'processStep1'])->name('cars.offer.step1');
-
 
 Route::middleware('auth')->group(function () {
-    Route::get('/aanbodplaatsen', function () {
-        return view('aanbodplaatsen');
-    })->name('aanbodplaatsen');
-
-    Route::get('/aanbodplaatsenstap2', function () {
-        return view('aanbodplaatsenstap2');
-    })->name('aanbodplaatsenstap2');
+    Route::get('/aanbieden', [CarsController::class, 'offerStep1'])->name('cars.offer.step1');
+    Route::post('/aanbieden', [CarsController::class, 'processStep1'])->name('cars.offer.step1.process');
+    Route::get('/aanbiedenstap2', [CarsController::class, 'offerStep2'])->name('cars.offer.step2');
+    Route::post('/aanbiedenstap2', [CarsController::class, 'processStep2'])->name('cars.offer.step2.process');
 });
 
 require __DIR__ . '/auth.php';

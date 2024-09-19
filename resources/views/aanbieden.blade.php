@@ -28,15 +28,17 @@
         }
     </style>
     <div class="form-group mt-5 d-flex justify-content-center align-middle">
-        <form action="{{ route('aanbodplaatsenstap2') }}" method="GET">
+        <form action="{{ route('cars.offer.step1.process') }}" method="POST">
+            @csrf
             <div class="kenteken-holder">
                 <div class="kenteken-input form-group">
                     <input type="text" id="kenteken" class="form-control"
                         style="--bs-focus-ring-color: rgba(var(--bs-success-rgb), 0)" name="kenteken" placeholder="7-ZSB-84"
                         required>
                 </div>
-                <button type="submit" class="btn btn-primary d-flex justify-content-center"
-                    style="margin-top: 25px;">Volgende stap</button>
+                <div class="form-group">
+                    <input type="submit" value="Volgende" class="btn btn-primary mt-2">
+                </div>
             </div>
         </form>
     </div>
