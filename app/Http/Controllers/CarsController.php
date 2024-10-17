@@ -17,21 +17,21 @@ class CarsController extends Controller
     {
         // Valideer het formulier. Is het kenteken wel een kenteken?
         $request->validate([
-            'license_plate' => 'required|regex:/^[A-Z0-9-]{6,10}$/'
+            'kenteken' => 'required|regex:/^[A-Z0-9-]{6,10}$/'
         ]);
 
         // Optioneel: een volledige validatie van het kenteken
-        // if(!$this->checkLicensePlate($request->license_plate)){
+        // if(!$this->checkLicensePlate($request->kenteken)){
         //     return redirect()->back()->with('error', 'Dit kenteken is niet geldig. Probeer een ander kenteken.');
         // }
 
         // Check of het kenteken al bestaat in de database
-        if (Car::where('license_plate', $request->license_plate)->exists()) {
+        if (Car::where('license_plate', $request->kenteken)->exists()) {
             return redirect()->back()->with('error', 'Een auto met dit kenteken bestaat al. Probeer een ander kenteken.');
         }
 
         // Sla het kenteken op in de sessie zodat we het kunnen gebruiken in stap 2
-        $request->session()->put('license_plate', $request->license_plate);
+        $request->session()->put('license_plate', $request->kenteken);
 
         // Ga naar stap 2
         return redirect()->route('cars.offer.step2');
@@ -45,7 +45,6 @@ class CarsController extends Controller
 
     public function processStep2(Request $request)
     {
-
         // Valideer het formulier
         $request->validate([
             'brand' => 'required',
